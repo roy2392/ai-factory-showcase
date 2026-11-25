@@ -1,0 +1,20 @@
+# Optional: install this caller to collect weekly metrics for the target repository.
+name: AI Factory metrics
+on:
+  schedule:
+    - cron: '0 8 * * 1' # Monday 08:00 UTC
+  workflow_dispatch:
+permissions: {}
+jobs:
+  metrics:
+    permissions:
+      issues: read
+      pull-requests: read
+    uses: roy2392/ai-factory/.github/workflows/reusable-metrics.yml@v1.1
+    with:
+      factory_repo: roy2392/ai-factory
+      factory_ref: v1.1
+      since: 30d
+    secrets:
+      FACTORY_APP_ID: ${{ secrets.FACTORY_APP_ID }}
+      FACTORY_APP_PRIVATE_KEY: ${{ secrets.FACTORY_APP_PRIVATE_KEY }}
