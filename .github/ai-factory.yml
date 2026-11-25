@@ -1,0 +1,22 @@
+# Optional; omitted keys use the defaults shown here.
+version: 1 # Configuration schema version.
+# base_branch defaults to the repository's default branch. Uncomment to override:
+# base_branch: main
+model: '' # Empty means Copilot's default model.
+allowed_associations: [OWNER, MEMBER, COLLABORATOR] # Trusted issue authors.
+labels:
+  skip: [ai:manual, requirements] # Never dispatch these issues.
+  needs_plan: ai:needs-plan # Label that activates the plan gate.
+plan_gate: label # label | always | never; prepare a plan before implementation.
+agents:
+  implementer: implementer # Empty means the default Copilot agent.
+  review_triage: review-triage # Used by later phases.
+merge_method: squash # merge | squash | rebase.
+reviewers: [] # User logins or org/team slugs; set COPILOT_BOT_LOGIN variable for users.
+max_fix_attempts: 3 # 0–10; used by later phases.
+escalate_to: [roy2392] # Users to mention on escalation in later phases.
+stale_hours: 6 # 1–168; used by later phases.
+requirements:
+  enabled: true # Used by later phases.
+  max_open: 3 # 1–20 concurrent tasks, in later phases.
+  max_tasks_per_run: 15 # 1–30 tasks, in later phases.
